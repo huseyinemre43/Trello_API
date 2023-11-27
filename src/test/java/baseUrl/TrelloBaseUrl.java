@@ -10,7 +10,6 @@ public class TrelloBaseUrl {
 
     public static RequestSpecification spec;
 
-
     @BeforeClass
     public static void beforeAPIScnerio() {
         spec = new RequestSpecBuilder()

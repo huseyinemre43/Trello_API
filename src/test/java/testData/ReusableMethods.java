@@ -20,7 +20,7 @@ public class ReusableMethods {
             String key = "pp" + (i + 1);
             String value = paths[i];
             spec.pathParam(key,value);
-            tempPath.append( key + "}/{" );  // /{pp1}/{pp2}/{pp3}/{
+            tempPath.append( key + "}/{" );
         }
         tempPath.deleteCharAt(tempPath.lastIndexOf("{"));
         tempPath.deleteCharAt(tempPath.lastIndexOf("/"));
@@ -46,5 +46,38 @@ public class ReusableMethods {
                 .post(fullPath);
         return response;
     }
+    public static Response putRequest(){
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .put(fullPath);
+        return response;
+    }
+    public static Response putRequest(Object reqBody){
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body(reqBody.toString())
+                .put(fullPath);
+        return response;
+    }
+    public static Response deleteRequest(){
+        response = given()
+                .spec(spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .delete(fullPath);
+        return response;
+    }
 
+    public static void waitFor(int saniye) {
+
+        try {
+            Thread.sleep(saniye * 1000);
+        } catch (InterruptedException e) {
+
+        }
+    }
 }
